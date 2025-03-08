@@ -3,43 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моё портфолио</title>
+    <title>Бизнес-Сайт</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            color: #333;
             margin: 0;
             padding: 0;
+            text-align: center;
+            background: #f4f4f4;
         }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        .hero {
+            background: #007bff;
+            color: white;
+            padding: 50px 20px;
         }
-        h1 { color: #007BFF; }
         .btn {
             display: inline-block;
-            margin-top: 20px;
             padding: 10px 20px;
-            background: #007BFF;
-            color: white;
+            background: white;
+            color: #007bff;
             text-decoration: none;
+            font-weight: bold;
             border-radius: 5px;
         }
-        .btn:hover { background: #0056b3; }
+        .about, .services, .contact {
+            padding: 50px 20px;
+            background: white;
+            margin: 20px auto;
+            width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .service {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+        .service:hover {
+            transform: scale(1.05);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Привет, я Абылай!</h1>
-        <p>Я создаю современные сайты для бизнеса.</p>
-        <p>Нужен сайт? Свяжитесь со мной!</p>
-        <a href="https://t.me"mmm_dig" class="btn">Написать мне</a>
-    </div>
+    <header class="hero">
+        <h1 class="fade-in">Добро пожаловать в наш бизнес!</h1>
+        <p class="fade-in delay">Мы предлагаем лучшие решения для вас.</p>
+        <a href="#contact" class="btn">Свяжитесь с нами</a>
+    </header>
+    
+    <section class="about">
+        <h2>О нас</h2>
+        <p>Мы компания, которая поможет вам достичь успеха.</p>
+    </section>
+    
+    <section class="services">
+        <h2>Наши услуги</h2>
+        <div class="service fade-in">
+            <h3>Маркетинг</h3>
+            <p>Продвижение вашего бренда.</p>
+        </div>
+        <div class="service fade-in delay">
+            <h3>Разработка</h3>
+            <p>Создание сайтов и приложений.</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact">
+        <h2>Контакты</h2>
+        <form>
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Ваш email" required>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let elements = document.querySelectorAll(".fade-in");
+            let observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.1 });
+            elements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
